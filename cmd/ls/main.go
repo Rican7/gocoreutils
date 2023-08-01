@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"flag"
 	"fmt"
 	"io"
 	"io/fs"
@@ -14,6 +13,8 @@ import (
 	"syscall"
 	"text/tabwriter"
 	"time"
+
+	flag "github.com/cornfeedhobo/pflag"
 )
 
 const (
@@ -83,7 +84,7 @@ func (e *entryInfo) blocksForSize(blockSize uint) uint {
 
 func init() {
 	flag.UintVar(&config.blockSize, "block-size", 1024, "scale sizes by SIZE before printing them")
-	flag.BoolVar(&config.formatLongList, "l", false, "use a long listing format")
+	flag.BoolVarS(&config.formatLongList, "list-long", "l", false, "use a long listing format")
 
 	flag.Parse()
 }
